@@ -5,14 +5,21 @@ import Producto from './components/Producto'
 
 function App() {
 
+  const menus = [
+  { nombre: "Home", link: "/" },
+  { nombre: "Login", link: "/login" },
+  { nombre: "Register", link: "/register" }
+];
+
   return (
     <>
-      <Banner/>
-      <Sidebar/>
-      <div style={{dispplay:'flex'}}>
-      <Producto nombre="Pizza 1" texto ="Pizza Napolitana"> </Producto>
-      <Producto nombre="Pizza 2" texto ="Pizza Europea"> </Producto>
-      <Producto nombre="Pizza 3" texto ="Pizza Americana"> </Producto>
+
+      <Banner></Banner>
+      <Sidebar menu={menus} />
+      <div style={{display:'flex'}}>
+        <Producto title="Pizza Napolitana" text ="mozzarella, tomates, jamón, orégano" precio="$5.950"> </Producto>
+        <Producto title="Pizza Española" text ="mozzarella, gorgonzola, parmesano, provolone" precio="$6.950"> </Producto>
+        <Producto title="Pizza Pepperoni" text ="mozzarella, pepperoni, orégano" precio="$6.950"> </Producto>
       </div>
     </>
   )

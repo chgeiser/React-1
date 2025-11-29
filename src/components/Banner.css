@@ -1,0 +1,11 @@
+.banner {
+  width: 100%;
+  height: 300px;        /* altura del banner */
+  overflow: hidden;    /* recorta lo que sobra */
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* rellena sin deformar */
+}
