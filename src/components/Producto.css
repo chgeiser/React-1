@@ -1,3 +1,4 @@
-.cardProducto{
-    margin: 4rem;
+.producto-img {
+  height: 180px;
+  object-fit: cover;
 }
