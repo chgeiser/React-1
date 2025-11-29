@@ -2,6 +2,7 @@ import './App.css'
 import Sidebar from './components/Sidebar'
 import Banner from './components/Banner'
 import Producto from './components/Producto'
+import Footer from './components/Footer';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Producto title="Pizza Española" text ="mozzarella, gorgonzola, parmesano, provolone" precio="$6.950"> </Producto>
         <Producto title="Pizza Pepperoni" text ="mozzarella, pepperoni, orégano" precio="$6.950"> </Producto>
       </div>
+      <Footer></Footer>
     </>
   )
 }
