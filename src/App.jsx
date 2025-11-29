@@ -15,8 +15,9 @@ function App() {
   return (
     <>
 
-      <Banner></Banner>
+      
       <Sidebar menu={menus} />
+      <Banner></Banner>
       <div style={{display:'flex'}}>
         <Producto title="Pizza Napolitana" text ="mozzarella, tomates, jamón, orégano" precio="$5.950"> </Producto>
         <Producto title="Pizza Española" text ="mozzarella, gorgonzola, parmesano, provolone" precio="$6.950"> </Producto>

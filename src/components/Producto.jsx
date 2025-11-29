@@ -16,7 +16,7 @@ const Producto = (props) => {
           <Card.Text>{props.text}</Card.Text>
           <Card.Text>Precio: {props.precio}</Card.Text>
         <Button variant="primary">Ver Más</Button>
-        <Button variant="primary">Añadir</Button>
+        <Button variant="dark">Añadir</Button>
         </Card.Body>
       </Card>
     </>
