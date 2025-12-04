@@ -11,7 +11,7 @@ function App() {
   const menus = [
     { nombre: "Home", link: "/" },
     { nombre: "Login", link: "/login" },
-    { nombre: "Register", link: "/register" },
+    { nombre: "Register", link: "/Register" },
   ];
 
   return (
