@@ -1,5 +1,6 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ menu }) => {
   return (
@@ -10,10 +11,10 @@ const Sidebar = ({ menu }) => {
           <Navbar.Collapse id="navbarNavAltMarkup">
             <Nav className="me-auto">
               <Navbar.Brand>Pizzería Mamma Mia!</Navbar.Brand>
-              {menu?.map((item, index) => (
-                <Nav.Link key={index} href={item.link}>
+              {menu.map((item) => (
+                <Link key={item.nombre} to={item.link} style={{ marginRight: "20px" }}>
                   {item.nombre}
-                </Nav.Link>
+                </Link>
               ))}
             </Nav>
            <form className="d-flex" role="search">

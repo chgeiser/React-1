@@ -1,23 +1,21 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Sidebar from "./components/Sidebar";
 import Banner from "./components/Banner";
 import Producto from "./components/Producto";
 import Footer from "./components/Footer";
-import  pizza1  from "../src/assets/img/pizza1.jpg";
-import  pizza2  from "../src/assets/img/pizza2.jpg";
-import  pizza3  from "../src/assets/img/pizza3.jpg";
+import LoginPage from "./components/LoginPage";
+import Register from "./components/Register";
 
-function App() {
-  const menus = [
-    { nombre: "Home", link: "/" },
-    { nombre: "Login", link: "/login" },
-    { nombre: "Register", link: "/Register" },
-  ];
+import pizza1 from "../src/assets/img/pizza1.jpg";
+import pizza2 from "../src/assets/img/pizza2.jpg";
+import pizza3 from "../src/assets/img/pizza3.jpg";
 
+function HomePage() {
   return (
     <>
-      <Sidebar menu={menus} />
-      <Banner></Banner>
+      <Banner />
       <div style={{ display: "flex" }}>
         <Producto
           title="Pizza Napolitana"
@@ -25,14 +23,12 @@ function App() {
           precio="5.950"
           imagen={pizza1}
         />
-
         <Producto
           title="Pizza Española"
           text="mozzarella, gorgonzola, parmesano, provolone"
           precio="6.950"
           imagen={pizza2}
         />
-
         <Producto
           title="Pizza Pepperoni"
           text="mozzarella, pepperoni, orégano"
@@ -40,8 +36,29 @@ function App() {
           imagen={pizza3}
         />
       </div>
-      <Footer></Footer>
     </>
+  );
+}
+
+function App() {
+  const menus = [
+    { nombre: "Home", link: "/" },
+    { nombre: "Login", link: "/login" },
+    { nombre: "Register", link: "/register" },
+  ];
+
+  return (
+    <BrowserRouter>
+      <Sidebar menu={menus} />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+
+      <Footer />
+    </BrowserRouter>
   );
 }
 

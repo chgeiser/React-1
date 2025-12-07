@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import styles from "./Register.module.css";
+import styles from "./LoginPage.module.css";
 
-const Register = () => {
+const LoginPage = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
-    confirmacion: "",
   });
 
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    confirmacion: "",
   });
 
   const handleChange = (e) => {
@@ -25,55 +23,40 @@ const Register = () => {
     } else {
       setErrors({ ...errors, [e.target.name]: "el valor no es valido" });
     }
-    setForm({ email: "", password: "", confirmacion: "" });
+    setForm({ email: "", password: "" });
   };
 
-  const validateForm = (name, value) => {
-
+const validateForm = (name, value) => {
     if (name === "email") {
       return value.includes("@");
     }
-    if (name === "confirmacion") {
-      return value.length >= 6;
-    }
     if (name === "password") {
       return value.length >= 6;
-    }
-    if(name==="confirmacion"){
-        return value === form.password;
     }
     return true;
   };
 
   //const  [email, setEmail]=useState('');
   //const  [clave, setClave]=useState('');
-  //const  [confirmacion, setConfirmacion]=useState('');
 
   /*const handleChange =(e)=>{
-        e.target.value;
-        if(e.target.name==="email"){
-            setEmail(e.target.value);
-        }
-        if(e.target.name==="clave"){
-            setClave(e.target.value);
-        }
-        if(e.target.name==="confirmacion"){
-            setConfirmacion(e.target.value);
-        }
-    }*/
+            e.target.value;
+            if(e.target.name==="email"){
+                setEmail(e.target.value);
+            }
+            if(e.target.name==="clave"){
+                setClave(e.target.value);
+            }
+        }*/
 
   /*const handleSubmit =(e) =>{
-       e.preventDefault(); 
-
-       console.log({email, clave, confirmacion});
-
-       setEmail('');
-       setClave('');
-       setConfirmacion('')
-      
-    }*/
+           e.preventDefault(); 
+           console.log({email, clave});
+           setEmail('');
+           setClave('');          
+        }*/
   return (
-    <form className={styles.formulario} onSubmit={handleSubmit}>
+    <form className={styles.login} onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="Email"
@@ -92,20 +75,11 @@ const Register = () => {
         value={form.password}
       />
       {errors.password && <p className={styles.error}>{errors.password}</p>}
-      <input
-        type="password"
-        placeholder="Confirmacion de Password"
-        name="confirmacion"
-        id=""
-        onChange={handleChange}
-        value={form.confirmacion}
-      />
-      {errors.confirmacion && <p className={styles.error}>{errors.confirmacion}</p>}
-      <button className={styles.button} type="button">
-        Enviar
+      <button className={styles.button} type="submit">
+        Ingresar
       </button>
     </form>
   );
 };
 
-export default Register;
+export default LoginPage;
