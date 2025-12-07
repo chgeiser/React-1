@@ -12,21 +12,45 @@ const LoginPage = () => {
     password: "",
   });
 
+  const [mensaje, setMensaje] = useState("");
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm(e.target.name, e.target.value)) {
-      setErrors({ ...errors, [e.target.name]: "" });
-    } else {
-      setErrors({ ...errors, [e.target.name]: "el valor no es valido" });
+
+    const newErrors = {};
+
+    // Validación campo por campo
+    Object.keys(form).forEach((key) => {
+      newErrors[key] = validateForm(key, form[key])
+        ? ""
+        : "El campo no es válido";
+    });
+
+    setErrors(newErrors);
+
+    // Verificar si hay errores
+    const hayErrores = Object.values(newErrors).some((err) => err !== "");
+
+    if (hayErrores) {
+      setMensaje("❌ Hay errores en el Login. Corrige los campos.");
+      return;
     }
-    setForm({ email: "", password: "" });
+
+    // Si todo está correcto
+    setMensaje("✔ Ingreso correctamente.");
+
+    setForm({
+      email: "",
+      password: "",
+      confirmacion: "",
+    });
   };
 
-const validateForm = (name, value) => {
+  const validateForm = (name, value) => {
     if (name === "email") {
       return value.includes("@");
     }
@@ -78,6 +102,18 @@ const validateForm = (name, value) => {
       <button className={styles.button} type="submit">
         Ingresar
       </button>
+
+      {mensaje && (
+        <p
+          style={{
+            color: mensaje.includes("❌") ? "red" : "green",
+            fontWeight: "bold",
+            marginTop: "10px",
+          }}
+        >
+          {mensaje}
+        </p>
+      )}
     </form>
   );
 };
