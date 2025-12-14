@@ -14,7 +14,6 @@ import Cart from "./components/Cart.jsx";
 function HomePage() {
   return (
     <>
-      <Banner />
       <div style={{ display: "flex" }}>
        {pizzas.map((pizza, posicion) => (
           <Producto
@@ -62,6 +61,7 @@ const CartPage = () => {
   );
 
   return (
+    <>
     <div className="pedido">
       <h3>Detalles del pedido:</h3>
 
@@ -83,6 +83,7 @@ const CartPage = () => {
 
       <button className="pagar">Pagar</button>
     </div>
+    </>
   );
 };
 
@@ -96,8 +97,8 @@ function App() {
 
   return (
     <BrowserRouter>
+     <Banner />
       <Sidebar menu={menus} />
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
