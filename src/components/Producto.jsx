@@ -2,9 +2,6 @@ import "../components/Producto.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-///import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { byPrefixAndName } from '@awesome.me/kit-KIT_CODE/icons';
-//<FontAwesomeIcon icon={byPrefixAndName.far['eyes']} />
 
 const Producto = ({ title, text, precio, imagen }) => {
   return (

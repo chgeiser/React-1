@@ -18,6 +18,7 @@ const Sidebar = ({ menu }) => {
               ))}
             </Nav>
            <form className="d-flex" role="search">
+           
             <input
               className="form-control me-2"
               type="search"
@@ -25,6 +26,7 @@ const Sidebar = ({ menu }) => {
               aria-label="Total del carrito"
               disabled
             />
+          
           </form>
           </Navbar.Collapse>
         </Container>

@@ -8,35 +8,43 @@ import Footer from "./components/Footer";
 import LoginPage from "./components/LoginPage";
 import Register from "./components/Register";
 
-import pizza1 from "../src/assets/img/pizza1.jpg";
-import pizza2 from "../src/assets/img/pizza2.jpg";
-import pizza3 from "../src/assets/img/pizza3.jpg";
+import {pizzas, pizzaCart} from "../src/components/data/pizzas.js"
+import Cart from "./components/Cart.jsx";
 
 function HomePage() {
   return (
     <>
       <Banner />
       <div style={{ display: "flex" }}>
-        <Producto
-          title="Pizza Napolitana"
-          text="mozzarella, tomates, jamón, orégano"
-          precio="5.950"
-          imagen={pizza1}
-        />
-        <Producto
-          title="Pizza Española"
-          text="mozzarella, gorgonzola, parmesano, provolone"
-          precio="6.950"
-          imagen={pizza2}
-        />
-        <Producto
-          title="Pizza Pepperoni"
-          text="mozzarella, pepperoni, orégano"
-          precio="6.950"
-          imagen={pizza3}
-        />
+       {pizzas.map((pizza, posicion) => (
+          <Producto
+            key={posicion}
+            title={pizza.name}
+            text={pizza.desc}
+            precio={pizza.price}
+            imagen={pizza.img}
+          />
+        ))}
+        
       </div>
     </>
+  );
+}
+
+function CartPage(){
+
+  return(
+    <div>
+       {pizzaCart.map((pizzacart) => (
+          <Cart
+            key={pizzacart.id}
+            imagen={pizzacart.imagen}
+            nombre={pizzacart.name}
+            precio={pizzacart.precio}
+          />
+        ))}
+        
+      </div>
   );
 }
 
@@ -45,6 +53,7 @@ function App() {
     { nombre: "Home", link: "/" },
     { nombre: "Login", link: "/login" },
     { nombre: "Register", link: "/register" },
+    { nombre: "Cart", link: "/cart"},
   ];
 
   return (
@@ -55,6 +64,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<CartPage/>} />
       </Routes>
 
       <Footer />
