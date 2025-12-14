@@ -1,50 +1,37 @@
 import React from "react";
-import { useState } from "react";
 import "./Cart.css";
 
-const Cart = (imagen, nombre, precio) => {
-  const [contador, setContador] = useState(0);
-  const [total, setTotal] = useState(0)
-
-
-  const handleChange = (e) => {
-    setTotal(e.target.value)
-  };
+const Cart = ({ pizza, onAdd, onRemove }) => {
+  const { id, img, name, price, cantidad } = pizza;
 
   return (
-    <>
-    <div className="pedido">
-      <h3>Detalles del pedido:</h3>
-    </div>
-    
-    <div>
-      <div className="item">
-        <img src={imagen} alt={nombre} />
-        <span className="nombre">{nombre}</span>
-        <span className="precio">{precio}</span>
+    <div className="item">
+      <img src={img} alt={name} />
+      <span className="nombre">{name}</span>
+      <span className="precio">
+        ${price.toLocaleString("es-CL")}
+      </span>
 
-        <div className="cantidad">
-          <button
-            className="menos"
-            onClick={() => setContador((contador) => contador - 1)}
-          >-</button>
-          <span>{contador}</span>
-          <button
-            className="mas"
-            onClick={() => setContador((contador) => contador + 1)}
-          >+</button>
-          
-        </div>
+      <div className="cantidad">
+        <button
+          className="menos"
+          onClick={() => onRemove(id)}
+        >
+          -
+        </button>
+
+        <span>{cantidad}</span>
+
+        <button
+          className="mas"
+          onClick={() => onAdd(id)}
+        >
+          +
+        </button>
       </div>
 
-      <div className="total">
-        <strong>Total:</strong>
-        <strong onChange={handleChange}>{total}</strong>
-      </div>
-
-      <button className="pagar">Pagar</button>
+      
     </div>
-    </>
   );
 };
 export default Cart;
