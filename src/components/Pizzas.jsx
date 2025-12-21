@@ -26,7 +26,7 @@ const Pizzas = ({ title, text, precio, imagen }) => {
           <strong>Precio:</strong> ${precio}
         </Card.Text>
 
-        <div className="d-flex justify-content-between">
+        <div className="d-flex">
           <Button variant="dark">Añadir</Button>
         </div>
 
