@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import { pizzaCart} from "../src/components/data/pizzas.js"
 import Cart from "./components/Cart.jsx";
 import axios from 'axios'
-import Pizzas from "./components/Pizzas.jsx";
 
 function HomePage() {
 
