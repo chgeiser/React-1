@@ -7,17 +7,35 @@ import Producto from "./components/Producto";
 import Footer from "./components/Footer";
 import LoginPage from "./components/LoginPage";
 import Register from "./components/Register";
-import { useState } from "react";
-import {pizzas, pizzaCart} from "../src/components/data/pizzas.js"
+import { useEffect, useState } from "react";
+import { pizzaCart} from "../src/components/data/pizzas.js"
 import Cart from "./components/Cart.jsx";
+import axios from 'axios'
+import Pizzas from "./components/Pizzas.jsx";
 
 function HomePage() {
+
+  const [listaPizzas, setListaPizzas] = useState([])
+
+    const axiosData  = async(url) =>{
+    const response = await axios.get(url);
+    setListaPizzas(response.data);
+    console.log("response: " + response.data);
+  }
+
+useEffect(() => {
+  const load = async () => {
+    await axiosData("http://localhost:5000/api/pizzas");
+  };
+
+  load();
+}, []);
   return (
     <>
       <div style={{ display: "flex" }}>
-       {pizzas.map((pizza, posicion) => (
+       {listaPizzas.map((pizza) => (
           <Producto
-            key={posicion}
+            key={pizza.id}
             title={pizza.name}
             text={pizza.desc}
             precio={pizza.price}
@@ -87,12 +105,52 @@ const CartPage = () => {
   );
 };
 
+const Pizza = () =>{
+
+    const [vistaPizzas, setVistaPizzas] = useState([])
+
+    const axiosData  = async(url) =>{
+    const response = await axios.get(url);
+    setVistaPizzas([response.data]);
+    console.log("response: " + response.data);
+  }
+
+useEffect(() => {
+  const load = async () => {
+    await axiosData("http://localhost:5000/api/pizzas/p001");
+  };
+
+  load();
+}, []);
+
+if (!vistaPizzas) return <h3>Cargando...</h3>;
+
+  return(
+  <>
+      <div>
+        
+        <h3>Pizza:</h3>
+          {vistaPizzas.map(pizza => (
+            <Producto
+              key={pizza.id}
+              title={pizza.name}
+              text={pizza.desc}
+              precio={pizza.price}
+              imagen={pizza.img}
+            />
+          ))}
+      </div>
+  </>
+  );
+};
+
 function App() {
   const menus = [
     { nombre: "Home", link: "/" },
     { nombre: "Login", link: "/login" },
     { nombre: "Register", link: "/register" },
     { nombre: "Cart", link: "/cart"},
+    { nombre: "Pizzas", link: "/pizzas"},
   ];
 
   return (
@@ -104,6 +162,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<CartPage/>} />
+        <Route path="/pizzas" element={<Pizza/>} />
       </Routes>
 
       <Footer />
