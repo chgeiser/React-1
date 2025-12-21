@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { pizzaCart} from "../src/components/data/pizzas.js"
 import Cart from "./components/Cart.jsx";
 import axios from 'axios'
+import Pizzas from "./components/Pizzas.jsx";
 
 function HomePage() {
 
@@ -111,7 +112,7 @@ const Pizza = () =>{
     const axiosData  = async(url) =>{
     const response = await axios.get(url);
     setVistaPizzas([response.data]);
-    console.log("response: " + response.data);
+    //console.log("response: " + response.data);
   }
 
 useEffect(() => {
@@ -130,7 +131,7 @@ if (!vistaPizzas) return <h3>Cargando...</h3>;
         
         <h3>Pizza:</h3>
           {vistaPizzas.map(pizza => (
-            <Producto
+            <Pizzas
               key={pizza.id}
               title={pizza.name}
               text={pizza.desc}
