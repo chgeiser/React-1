@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Register.module.css";
+import styles from "../assets/css/Register.module.css";
 
 const Register = () => {
   const [form, setForm] = useState({

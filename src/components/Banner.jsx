@@ -1,5 +1,5 @@
 import logoBanner from '../assets/img/Header.jpg';
-import '../components/Banner.css'; 
+import '../assets/css/Banner.css'; 
 
 const Banner = () => {
   return (

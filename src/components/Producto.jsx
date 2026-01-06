@@ -1,7 +1,8 @@
-import "../components/Producto.css";
+import "../assets/css/Producto.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
 const Producto = ({ title, text, precio, imagen }) => {
   return (
@@ -27,10 +28,8 @@ const Producto = ({ title, text, precio, imagen }) => {
         </Card.Text>
 
         <div className="d-flex justify-content-between">
-          <Button variant="light">Ver más
-            
-            </Button>
-          <Button variant="dark">Añadir</Button>
+          <Button variant="light">Ver más</Button>
+          <Link to={"/pizzas"}>Agregar</Link>
         </div>
 
       </Card.Body>

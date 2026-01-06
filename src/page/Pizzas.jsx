@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import "../components/Producto.css";
+import "../assets/css/Producto.css";
 
 const Pizzas = ({ title, text, precio, imagen }) => {
   return (

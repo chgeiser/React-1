@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./LoginPage.module.css";
+import styles from "../assets/css/LoginPage.module.css";
 
 const LoginPage = () => {
   const [form, setForm] = useState({

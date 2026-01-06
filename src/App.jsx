@@ -1,17 +1,19 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./components/Cart.css";
-import Sidebar from "./components/Sidebar";
-import Banner from "./components/Banner";
-import Producto from "./components/Producto";
-import Footer from "./components/Footer";
-import LoginPage from "./components/LoginPage";
-import Register from "./components/Register";
+import "./assets/css/Cart.css";
+import Sidebar from "./components/Sidebar.jsx";
+import Banner from "./components/Banner.jsx";
+import Producto from "./components/Producto.jsx";
+import Footer from "./components/Footer.jsx";
+import LoginPage from "./page/LoginPage.jsx";
+import Register from "./page/Register.jsx";
+import NotFound from "./page/NotFound.jsx";
 import { useEffect, useState } from "react";
 import { pizzaCart} from "../src/components/data/pizzas.js"
-import Cart from "./components/Cart.jsx";
+import Cart from "./page/Cart.jsx";
 import axios from 'axios'
-import Pizzas from "./components/Pizzas.jsx";
+import Pizzas from "./page/Pizzas.jsx";
+import Profile from "./page/Profile.jsx";
 
 function HomePage() {
 
@@ -47,6 +49,45 @@ useEffect(() => {
     </>
   );
 }
+
+const Pizza = () =>{
+
+    const [vistaPizzas, setVistaPizzas] = useState([])
+
+    const axiosData  = async(url) =>{
+    const response = await axios.get(url);
+    setVistaPizzas([response.data]);
+    console.log("response: " + response.data);
+  }
+
+useEffect(() => {
+  const load = async () => {
+    await axiosData("http://localhost:5000/api/pizzas/p001");
+  };
+
+  load();
+}, []);
+
+if (!vistaPizzas) return <h3>Cargando...</h3>;
+
+  return(
+  <>
+      <div>
+        
+        <h3>Pizza:</h3>
+          {vistaPizzas.map(pizza => (
+            <Pizzas
+              key={pizza.id}
+              title={pizza.name}
+              text={pizza.desc}
+              precio={pizza.price}
+              imagen={pizza.img}
+            />
+          ))}
+      </div>
+  </>
+  );
+};
 
 const CartPage = () => {
   const [cart, setCart] = useState(
@@ -105,52 +146,14 @@ const CartPage = () => {
   );
 };
 
-const Pizza = () =>{
 
-    const [vistaPizzas, setVistaPizzas] = useState([])
-
-    const axiosData  = async(url) =>{
-    const response = await axios.get(url);
-    setVistaPizzas([response.data]);
-    //console.log("response: " + response.data);
-  }
-
-useEffect(() => {
-  const load = async () => {
-    await axiosData("http://localhost:5000/api/pizzas/p001");
-  };
-
-  load();
-}, []);
-
-if (!vistaPizzas) return <h3>Cargando...</h3>;
-
-  return(
-  <>
-      <div>
-        
-        <h3>Pizza:</h3>
-          {vistaPizzas.map(pizza => (
-            <Pizzas
-              key={pizza.id}
-              title={pizza.name}
-              text={pizza.desc}
-              precio={pizza.price}
-              imagen={pizza.img}
-            />
-          ))}
-      </div>
-  </>
-  );
-};
 
 function App() {
   const menus = [
     { nombre: "Home", link: "/" },
     { nombre: "Login", link: "/login" },
     { nombre: "Register", link: "/register" },
-    { nombre: "Cart", link: "/cart"},
-    { nombre: "Pizzas", link: "/pizzas"},
+    { nombre: "Profile", link: "/profile"},
   ];
 
   return (
@@ -161,10 +164,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<CartPage/>} />
-        <Route path="/pizzas" element={<Pizza/>} />
+        <Route path="/cart" element={<Pizza/>} />
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/pizzas" element={<CartPage/>}/>
+        <Route path="/*" element={<NotFound/>}/>
       </Routes>
-
       <Footer />
     </BrowserRouter>
   );

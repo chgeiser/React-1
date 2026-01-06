@@ -1,5 +1,5 @@
 import React from "react";
-import "./Cart.css";
+import "../assets/css/Cart.css";
 
 const Cart = ({ pizza, onAdd, onRemove }) => {
   const { id, img, name, price, cantidad } = pizza;

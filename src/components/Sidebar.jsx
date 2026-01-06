@@ -3,6 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
 const Sidebar = ({ menu }) => {
+
+
+  
+
   return (
     <>
       <Navbar expand="lg" bg="light">
@@ -26,6 +30,7 @@ const Sidebar = ({ menu }) => {
               aria-label="Total del carrito"
               disabled
             />
+            <Link to="/cart">Carrito</Link>
           
           </form>
           </Navbar.Collapse>
