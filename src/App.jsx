@@ -8,12 +8,14 @@ import Footer from "./components/Footer.jsx";
 import LoginPage from "./page/LoginPage.jsx";
 import Register from "./page/Register.jsx";
 import NotFound from "./page/NotFound.jsx";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { pizzaCart} from "../src/components/data/pizzas.js"
 import Cart from "./page/Cart.jsx";
 import axios from 'axios'
 import Pizzas from "./page/Pizzas.jsx";
 import Profile from "./page/Profile.jsx";
+import { ContextoGlobal } from "./contexto/ContextoGlobal.jsx";
+import { UserContext } from "./contexto/UserContext.jsx";
 
 function HomePage() {
 
@@ -156,21 +158,24 @@ function App() {
     { nombre: "Profile", link: "/profile"},
   ];
 
+  const token = useContext(UserContext);
+
   return (
-    <BrowserRouter>
+   <>
      <Banner />
       <Sidebar menu={menus} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login/" element={<LoginPage />} />
+        <Route path="/register" element={token ? <Register /> : <LoginPage />} />
         <Route path="/cart" element={<Pizza/>} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={token ? <Profile /> : <LoginPage />}/>
         <Route path="/pizzas" element={<CartPage/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
       <Footer />
-    </BrowserRouter>
+ </>
+    
   );
 }
 

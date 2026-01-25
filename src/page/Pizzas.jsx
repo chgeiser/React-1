@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import "../assets/css/Producto.css";
 
 const Pizzas = ({ title, text, precio, imagen }) => {
+
+  
   return (
     <Card style={{ width: "18rem" }} className="shadow">
       

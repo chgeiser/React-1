@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styles from "../assets/css/LoginPage.module.css";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -60,25 +63,6 @@ const LoginPage = () => {
     return true;
   };
 
-  //const  [email, setEmail]=useState('');
-  //const  [clave, setClave]=useState('');
-
-  /*const handleChange =(e)=>{
-            e.target.value;
-            if(e.target.name==="email"){
-                setEmail(e.target.value);
-            }
-            if(e.target.name==="clave"){
-                setClave(e.target.value);
-            }
-        }*/
-
-  /*const handleSubmit =(e) =>{
-           e.preventDefault(); 
-           console.log({email, clave});
-           setEmail('');
-           setClave('');          
-        }*/
   return (
     <form className={styles.login} onSubmit={handleSubmit}>
       <input
@@ -99,7 +83,7 @@ const LoginPage = () => {
         value={form.password}
       />
       {errors.password && <p className={styles.error}>{errors.password}</p>}
-      <button className={styles.button} type="submit">
+      <button className={styles.button} type="submit" onClick={()=> navigate('/Profile')} >
         Ingresar
       </button>
 

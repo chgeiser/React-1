@@ -1,4 +1,3 @@
-import React from "react";
 import "../assets/css/Cart.css";
 
 const Cart = ({ pizza, onAdd, onRemove }) => {

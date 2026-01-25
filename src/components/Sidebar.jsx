@@ -1,10 +1,10 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const Sidebar = ({ menu }) => {
 
-
+const estiloActivo = ({isActive}) => `text-${isActive ? "warning" : "primary" } ms-3 text-decoration-none`;
   
 
   return (
@@ -16,9 +16,10 @@ const Sidebar = ({ menu }) => {
             <Nav className="me-auto">
               <Navbar.Brand>Pizzería Mamma Mia!</Navbar.Brand>
               {menu.map((item) => (
-                <Link key={item.nombre} to={item.link} style={{ marginRight: "20px" }}>
-                  {item.nombre}
-                </Link>
+                <NavLink key={item.nombre} to={item.link} style={{ marginRight: "20px" }} 
+                className = {estiloActivo}>
+                  {item.nombre}                 
+                </NavLink>
               ))}
             </Nav>
            <form className="d-flex" role="search">
@@ -30,7 +31,7 @@ const Sidebar = ({ menu }) => {
               aria-label="Total del carrito"
               disabled
             />
-            <Link to="/cart">Carrito</Link>
+            <NavLink to="/cart" className = {estiloActivo}>Carrito</NavLink>
           
           </form>
           </Navbar.Collapse>

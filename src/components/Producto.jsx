@@ -2,9 +2,11 @@ import "../assets/css/Producto.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { Link } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Producto = ({ title, text, precio, imagen }) => {
+
+  const navigate = useNavigate();
   return (
     <Card style={{ width: "18rem" }} className="shadow">
       
@@ -28,8 +30,8 @@ const Producto = ({ title, text, precio, imagen }) => {
         </Card.Text>
 
         <div className="d-flex justify-content-between">
-          <Button variant="light">Ver más</Button>
-          <Link to={"/pizzas"}>Agregar</Link>
+          <Button variant="light" onClick={()=> navigate('/detalles')}>Ver más</Button>
+          <NavLink to={"/pizzas"}>Agregar</NavLink>
         </div>
 
       </Card.Body>
