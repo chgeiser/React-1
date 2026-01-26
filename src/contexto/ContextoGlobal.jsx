@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 //1.- crear el conexto
 // eslint-disable-next-line react-refresh/only-export-components
-export const ContextoGlobal = createContext();
+const ContextoGlobal = createContext();
 
 //2.- compartir el contexto 
 const ContextoGlobalProvider = ({children}) => {
@@ -15,4 +15,4 @@ const ContextoGlobalProvider = ({children}) => {
 </ContextoGlobal.Provider>
    )
 }
-export default ContextoGlobalProvider;
+export {ContextoGlobal, ContextoGlobalProvider} 

@@ -1,13 +1,12 @@
 import { createContext, useState } from "react";
 
 //1.- crear el conexto
-// eslint-disable-next-line react-refresh/only-export-components
-export const UserContext = createContext();
+const UserContext = createContext();
 
 //2.- compartir el contexto 
 const UserContextProvider = ({children}) => {
 
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState(true);
 
     const login = ()=>{
         setToken(true)
@@ -18,9 +17,9 @@ const UserContextProvider = ({children}) => {
     }
    
    return(
-<UserContext.Provider value={{token, setToken, login, logout}}>
+<UserContext.Provider value={{token, setToken,  logout, login}}>
     {children}
 </UserContext.Provider>
    )
 }
-export default UserContextProvider;
+export {UserContext, UserContextProvider} 

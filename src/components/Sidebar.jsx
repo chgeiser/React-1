@@ -1,11 +1,13 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {  NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../contexto/UserContext";
 
 const Sidebar = ({ menu }) => {
 
 const estiloActivo = ({isActive}) => `text-${isActive ? "warning" : "primary" } ms-3 text-decoration-none`;
-  
+const {token, login, logout} = useContext(UserContext);
 
   return (
     <>
@@ -32,7 +34,7 @@ const estiloActivo = ({isActive}) => `text-${isActive ? "warning" : "primary" } 
               disabled
             />
             <NavLink to="/cart" className = {estiloActivo}>Carrito</NavLink>
-          
+          <button onClick={()=> {token ? logout() : login()}}>{token ? 'LOGOUT' : 'LOGIN'} </button>
           </form>
           </Navbar.Collapse>
         </Container>

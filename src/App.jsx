@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import "./assets/css/Cart.css";
 import Sidebar from "./components/Sidebar.jsx";
 import Banner from "./components/Banner.jsx";
@@ -53,10 +53,13 @@ useEffect(() => {
   );
 }
 
-const Pizza = () =>{
+
+const DetallePizza = () =>{
+
+
 
     const [vistaPizzas, setVistaPizzas] = useState([])
-
+    const {id} = useParams();
     const axiosData  = async(url) =>{
     const response = await axios.get(url);
     setVistaPizzas([response.data]);
@@ -65,11 +68,54 @@ const Pizza = () =>{
 
 useEffect(() => {
   const load = async () => {
-    await axiosData("http://localhost:5000/api/pizzas/p001");
+    await axiosData(`http://localhost:5000/api/pizzas/${id}`);
   };
-
   load();
-}, []);
+}, [id]);
+
+if (!vistaPizzas) return <h3>Cargando...</h3>;
+
+  return(
+  <>
+      <div>
+        
+        <h3>Pizza:</h3>
+          {vistaPizzas.map(pizza => (
+            <Pizzas
+              key={pizza.id}
+              title={pizza.name}
+              text={pizza.desc}
+              precio={pizza.price}
+              imagen={pizza.img}
+            />
+          ))}
+      </div>
+  </>
+  );
+};
+
+
+
+
+
+const Pizza = () =>{
+
+
+
+    const [vistaPizzas, setVistaPizzas] = useState([])
+    const {id} = useParams();
+    const axiosData  = async(url) =>{
+    const response = await axios.get(url);
+    setVistaPizzas([response.data]);
+    console.log("response: " + response.data);
+  }
+
+useEffect(() => {
+  const load = async () => {
+    await axiosData(`http://localhost:5000/api/pizzas/p001`);
+  };
+  load();
+}, [id]);
 
 if (!vistaPizzas) return <h3>Cargando...</h3>;
 
@@ -122,6 +168,7 @@ const CartPage = () => {
     0
   );
 
+    const {token} = useContext(UserContext);
   return (
     <>
     <div className="pedido">
@@ -143,7 +190,7 @@ const CartPage = () => {
         </strong>
       </div>
 
-      <button className="pagar">Pagar</button>
+      <button className={!token ? `disabled` : `active`}>Pagar</button>
     </div>
     </>
   );
@@ -159,7 +206,6 @@ function App() {
     { nombre: "Profile", link: "/profile"},
   ];
 
-  const token = useContext(UserContext);
 
   return (
    <>
@@ -168,8 +214,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login/" element={<LoginPage/>} />
-        <Route path="/register" element={token ? <Register /> : <LoginPage />} />
+        <Route path="/register" element={<ProtectedRouter><Register /></ProtectedRouter>} />
         <Route path="/cart" element={<Pizza/>} />
+        <Route path="/cart/:id" element={<DetallePizza/>} />
         <Route path="/profile" element={<ProtectedRouter><Profile/></ProtectedRouter>}/>
         <Route path="/pizzas" element={<CartPage/>}/>
         <Route path="/*" element={<NotFound/>}/>
