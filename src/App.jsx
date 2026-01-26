@@ -219,11 +219,11 @@ function App() {
       <Sidebar menu={menus} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login/" element={<ProtectedRouter><LoginPage /></ProtectedRouter>} />
-        <Route path="/register" element={<ProtectedRouter><Register /></ProtectedRouter>} />
+        <Route path="/login/" element={<ProtectedRouter to="/"><LoginPage /></ProtectedRouter>} />
+        <Route path="/register" element={<ProtectedRouter to="/"><Register /></ProtectedRouter>} />
         <Route path="/cart" element={<Pizza/>} />
         <Route path="/cart/:id" element={<DetallePizza/>} />
-        <Route path="/profile" element={<ProtectedRouter><Profile/></ProtectedRouter>}/>
+        <Route path="/profile" element={<ProtectedRouter to="/"><Profile/></ProtectedRouter>}/>
         <Route path="/pizzas" element={<CartPage/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
