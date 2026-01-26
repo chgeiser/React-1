@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+button.active {
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button.disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}

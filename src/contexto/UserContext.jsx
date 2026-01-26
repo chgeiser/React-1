@@ -11,12 +11,10 @@ const UserContextProvider = ({children}) => {
 
     const login = ()=>{
         setToken(true);
-        <Navigate to='/'/>
     }
 
     const logout =()=>{
         setToken(false);
-        <Navigate to='/login'/>
     }
    
    return(

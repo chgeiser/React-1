@@ -18,7 +18,9 @@ const {token, login, logout} = useContext(UserContext);
             <Nav className="me-auto">
               <Navbar.Brand>Pizzería Mamma Mia!</Navbar.Brand>
               {menu.map((item) => (
-                <NavLink key={item.nombre} to={item.link} style={{ marginRight: "20px" }} 
+                <NavLink 
+                key={item.nombre} 
+                to={item.link}
                 className = {estiloActivo}>
                   {item.nombre}                 
                 </NavLink>
@@ -34,7 +36,7 @@ const {token, login, logout} = useContext(UserContext);
               disabled
             />
             <NavLink to="/pizzas" className = {estiloActivo}>Carrito</NavLink>
-          <button onClick={()=> {token ? logout() : login()}}>{token ? 'LOGOUT' : 'LOGIN'} </button>
+          <button type="button" onClick={()=> {token ? logout() : login()}}>{token ? 'LOGOUT' : 'LOGIN'} </button>
           </form>
           </Navbar.Collapse>
         </Container>

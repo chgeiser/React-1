@@ -190,7 +190,12 @@ const CartPage = () => {
         </strong>
       </div>
 
-      <button className={token ? `disabled` : `active`}>Pagar</button>
+      <button
+  disabled={!token}
+  className={token ? "active" : "disabled"}
+>
+  Pagar
+</button>
     </div>
     </>
   );
