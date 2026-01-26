@@ -204,7 +204,7 @@ function App() {
     { nombre: "Login", link: "/login" },
     { nombre: "Register", link: "/register" },
     { nombre: "Profile", link: "/profile"},
-    { nombre: "Pizzas", link: "/pizzas"},
+    { nombre: "Pizzas", link: "/cart"},
   ];
 
 
