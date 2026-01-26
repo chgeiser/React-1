@@ -7,10 +7,18 @@ export const UserContext = createContext();
 //2.- compartir el contexto 
 const UserContextProvider = ({children}) => {
 
-    const [token, setToken] = useState(null)
+    const [token, setToken] = useState(null);
+
+    const login = ()=>{
+        setToken(true)
+    }
+
+    const logout =()=>{
+        setToken(false)
+    }
    
    return(
-<UserContext.Provider value={{token, setToken}}>
+<UserContext.Provider value={{token, setToken, login, logout}}>
     {children}
 </UserContext.Provider>
    )

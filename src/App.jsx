@@ -16,6 +16,7 @@ import Pizzas from "./page/Pizzas.jsx";
 import Profile from "./page/Profile.jsx";
 import { ContextoGlobal } from "./contexto/ContextoGlobal.jsx";
 import { UserContext } from "./contexto/UserContext.jsx";
+import ProtectedRouter from "./router/ProtectedRouter.jsx";
 
 function HomePage() {
 
@@ -166,10 +167,10 @@ function App() {
       <Sidebar menu={menus} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login/" element={<LoginPage />} />
+        <Route path="/login/" element={<LoginPage/>} />
         <Route path="/register" element={token ? <Register /> : <LoginPage />} />
         <Route path="/cart" element={<Pizza/>} />
-        <Route path="/profile" element={token ? <Profile /> : <LoginPage />}/>
+        <Route path="/profile" element={<ProtectedRouter><Profile/></ProtectedRouter>}/>
         <Route path="/pizzas" element={<CartPage/>}/>
         <Route path="/*" element={<NotFound/>}/>
       </Routes>
