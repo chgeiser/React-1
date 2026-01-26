@@ -33,7 +33,7 @@ const {token, login, logout} = useContext(UserContext);
               aria-label="Total del carrito"
               disabled
             />
-            <NavLink to="/cart" className = {estiloActivo}>Carrito</NavLink>
+            <NavLink to="/Cart" className = {estiloActivo}>Carrito</NavLink>
           <button onClick={()=> {token ? logout() : login()}}>{token ? 'LOGOUT' : 'LOGIN'} </button>
           </form>
           </Navbar.Collapse>

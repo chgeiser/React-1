@@ -190,7 +190,7 @@ const CartPage = () => {
         </strong>
       </div>
 
-      <button className={!token ? `disabled` : `active`}>Pagar</button>
+      <button className={token ? `disabled` : `active`}>Pagar</button>
     </div>
     </>
   );
@@ -204,6 +204,7 @@ function App() {
     { nombre: "Login", link: "/login" },
     { nombre: "Register", link: "/register" },
     { nombre: "Profile", link: "/profile"},
+    { nombre: "Pizzas", link: "/pizzas"},
   ];
 
 

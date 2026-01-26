@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 //1.- crear el conexto
 const UserContext = createContext();
@@ -9,11 +10,13 @@ const UserContextProvider = ({children}) => {
     const [token, setToken] = useState(true);
 
     const login = ()=>{
-        setToken(true)
+        setToken(true);
+        <Navigate to='/'/>
     }
 
     const logout =()=>{
-        setToken(false)
+        setToken(false);
+        <Navigate to='/login'/>
     }
    
    return(
