@@ -9,7 +9,6 @@ import LoginPage from "./page/LoginPage.jsx";
 import Register from "./page/Register.jsx";
 import NotFound from "./page/NotFound.jsx";
 import { useContext, useEffect, useState } from "react";
-import { pizzaCart} from "../src/components/data/pizzas.js"
 import Cart from "./page/Cart.jsx";
 import axios from 'axios'
 import Pizzas from "./page/Pizzas.jsx";
@@ -17,6 +16,7 @@ import Profile from "./page/Profile.jsx";
 import { ContextoGlobal } from "./contexto/ContextoGlobal.jsx";
 import { UserContext } from "./contexto/UserContext.jsx";
 import ProtectedRouter from "./router/ProtectedRouter.jsx";
+import { CartContext } from "./contexto/CartContext.jsx";
 
 function HomePage() {
 
@@ -139,7 +139,13 @@ if (!vistaPizzas) return <h3>Cargando...</h3>;
 };
 
 const CartPage = () => {
-  const [cart, setCart] = useState(
+
+  const {calcularTotal} = useContext(CartContext);
+    const {incrementar} = useContext(CartContext);
+      const {decrementar} = useContext(CartContext)
+      const {cart} = useContext(CartContext)
+
+  /*const [cart, setCart] = useState(
     pizzaCart.map(p => ({ ...p, cantidad: 1 }))
   );
 
@@ -162,13 +168,9 @@ const CartPage = () => {
       )
     );
   };
+*/
 
-  const totalGeneral = cart.reduce(
-    (acc, p) => acc + p.price * p.cantidad,
-    0
-  );
-
-    const {token} = useContext(UserContext);
+  const {token} = useContext(UserContext);
   return (
     <>
     <div className="pedido">
@@ -186,7 +188,7 @@ const CartPage = () => {
       <div className="total">
         <strong>Total:</strong>
         <strong>
-          ${totalGeneral.toLocaleString("es-CL")}
+          ${calcularTotal.toLocaleString("es-CL")}
         </strong>
       </div>
 
