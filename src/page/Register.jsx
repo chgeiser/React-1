@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../assets/css/Register.module.css";
+import { UserContext } from "../contexto/UserContext";
 
 const Register = () => {
+  const {register} = useContext(UserContext);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -32,7 +35,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    register(e.target.value.email, e.target.value.password)
     const newErrors = {};
 
     // Validación campo por campo

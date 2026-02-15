@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { pizzaCart} from "../src/components/data/pizzas.js"
+import axios from "axios";
 
 
 const CartContext = createContext(); 
@@ -10,6 +11,8 @@ const CartProvider=({children}) => {
    const [cart, setCart] = useState(
     pizzaCart.map(p => ({ ...p, cantidad: 1 }))
   );
+
+
 
  /*   const addToCart = (pizzas)=>{
         const index = cart.findIndex((p) => p.id === pizzas.id);
@@ -55,8 +58,17 @@ const CartProvider=({children}) => {
         return cart.reduce((acc, p) => acc + p.price * p.cantidad, 0);
     }
 
+    const PagarPedido = async ()=>{
+        const response = await axios.post("http://localhost:5000/api/checkouts", {})
+        console.log(response)
+
+        if(!response){
+          alert('pago realizado con exito')
+        }
+    }
+
     return(
-        <CartContext.Provider value={{cart, incrementar, decrementar, calcularTotal}}>
+        <CartContext.Provider value={{cart, PagarPedido, incrementar, decrementar, calcularTotal}}>
              {children}
         </CartContext.Provider>
     

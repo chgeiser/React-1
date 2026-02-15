@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../contexto/UserContext';
 //import { useParams } from 'react-router-dom'
 
 const Profile = () => {
 
-  //const {nombre , email} = useParams();
+  const {login, logout } = useContext(UserContext);
+  
+  const cerrarSesion = ()=>{
+      logout();
+  }
+
   return (
     <>
         <form>
-            <label>Nombre: Christopher Geiser</label><br></br>
-            <label>E-mail: christopher.geiser@gmail.com</label>
+            <label>E-mail: {login?.email}</label>
+            <button type='button' onClick={cerrarSesion}>Cerrar Sesion</button>
         </form>
     </>
   )

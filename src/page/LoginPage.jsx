@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../assets/css/LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../contexto/UserContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const {login} = useContext(UserContext);
 
   const [form, setForm] = useState({
     email: "",
@@ -23,6 +25,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    login(e.target.value.email, e.target.value.password);
 
     const newErrors = {};
 

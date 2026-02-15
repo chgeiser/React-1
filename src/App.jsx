@@ -56,8 +56,6 @@ useEffect(() => {
 
 const DetallePizza = () =>{
 
-
-
     const [vistaPizzas, setVistaPizzas] = useState([])
     const {id} = useParams();
     const axiosData  = async(url) =>{
@@ -100,8 +98,6 @@ if (!vistaPizzas) return <h3>Cargando...</h3>;
 
 const Pizza = () =>{
 
-
-
     const [vistaPizzas, setVistaPizzas] = useState([])
     const {id} = useParams();
     const axiosData  = async(url) =>{
@@ -141,9 +137,9 @@ if (!vistaPizzas) return <h3>Cargando...</h3>;
 const CartPage = () => {
 
   const {calcularTotal} = useContext(CartContext);
-    const {incrementar} = useContext(CartContext);
-      const {decrementar} = useContext(CartContext)
-      const {cart} = useContext(CartContext)
+  const {incrementar} = useContext(CartContext);
+  const {decrementar} = useContext(CartContext)
+  const {cart} = useContext(CartContext)
 
   /*const [cart, setCart] = useState(
     pizzaCart.map(p => ({ ...p, cantidad: 1 }))
@@ -171,6 +167,7 @@ const CartPage = () => {
 */
 
   const {token} = useContext(UserContext);
+  const {PagarPedido} = useContext(CartContext)
   return (
     <>
     <div className="pedido">
@@ -195,6 +192,7 @@ const CartPage = () => {
       <button
   disabled={!token}
   className={token ? "active" : "disabled"}
+  onClick={PagarPedido}
 >
   Pagar
 </button>
