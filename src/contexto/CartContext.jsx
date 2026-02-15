@@ -59,7 +59,8 @@ const CartProvider=({children}) => {
     }
 
     const PagarPedido = async ()=>{
-        const response = await axios.post("http://localhost:5000/api/checkouts", {})
+        const pagar = calcularTotal();
+        const response = await axios.post("http://localhost:5000/api/checkouts", {pagar})
         console.log(response)
 
         if(!response){
