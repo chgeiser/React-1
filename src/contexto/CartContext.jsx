@@ -58,15 +58,25 @@ const CartProvider=({children}) => {
         return cart.reduce((acc, p) => acc + p.price * p.cantidad, 0);
     }
 
-    const PagarPedido = async ()=>{
-        const pagar = calcularTotal();
-        const response = await axios.post("http://localhost:5000/api/checkouts", {pagar})
-        console.log(response)
+    const PagarPedido = async () => {
+    try {
+      const total = calcularTotal();
 
-        if(!response){
-          alert('pago realizado con exito')
-        }
+      const response = await axios.post(
+        "http://localhost:5000/api/checkouts",
+        { total, cart }
+      );
+
+      if (response.status === 200) {
+        alert("Pago realizado con éxito");
+        setCart([]); // opcional: limpiar carrito
+      }
+
+    } catch (error) {
+      console.error("Error en el pago:", error);
+      alert("Hubo un error al procesar el pago");
     }
+  };
 
     return(
         <CartContext.Provider value={{cart, PagarPedido, incrementar, decrementar, calcularTotal}}>
